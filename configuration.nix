@@ -1,21 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # Basic system settings
-  networking = {
-    networkmanager.enable = true;
-    wireless.enable = true;
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 22 ];
-    };
-  };
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = true;
 
-  # Time and locale settings
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
 
-  # User configuration
   users.users.nixtest = {
     isNormalUser = true;
     description = "nixtest";
@@ -23,14 +14,12 @@
     packages = with pkgs; [];
   };
 
-  # System packages
   environment.systemPackages = with pkgs; [
     wget
     git
     tailscale
   ];
 
-  # SSH configuration
   services.openssh = {
     enable = true;
     settings = {
@@ -41,9 +30,7 @@
     ports = [ 22 ];
   };
 
-  # Enable Tailscale
   services.tailscale.enable = true;
 
-  # System state version
   system.stateVersion = "24.11";
 }
