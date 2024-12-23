@@ -15,12 +15,6 @@
   time.timeZone = "Australia/Sydney";
   i18n.defaultLocale = "en_AU.UTF-8";
 
-  # X11 configuration
-  services.xserver = {
-    layout = "au";
-    variant = "";
-  };
-
   # User configuration
   users.users.nixtest = {
     isNormalUser = true;
