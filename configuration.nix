@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # Import hardware configuration
+  imports = [ ./hardware-configuration.nix ];
+
   networking.networkmanager.enable = true;
   networking.wireless.enable = true;
 
