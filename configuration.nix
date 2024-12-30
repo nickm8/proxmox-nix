@@ -6,10 +6,19 @@
   # Enable flakes for future use
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Basic boot configuration
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/sda";  # Typically for VMs
+  # Modified boot configuration for your partition layout
+  boot.loader = {
+    grub = {
+      enable = true;
+      version = 2;
+      device = "nodev";      # Don't install to MBR/disk
+      efiSupport = true;
+      efiInstallAsRemovable = true;
+    };
+    efi = {
+      canTouchEfiVariables = false;
+      efiSysMountPoint = "/boot";
+    };
   };
 
   # Basic networking
